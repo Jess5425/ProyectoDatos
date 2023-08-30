@@ -1,8 +1,8 @@
-module com.example.ctd {
+module com.example.prueba {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.ctd to javafx.fxml;
-    exports com.example.ctd;
+    opens com.example.prueba to javafx.fxml;
+    exports com.example.prueba;
 }

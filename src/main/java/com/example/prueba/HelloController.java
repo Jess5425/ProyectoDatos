@@ -1,4 +1,4 @@
-package com.example.ctd;
+package com.example.prueba;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
