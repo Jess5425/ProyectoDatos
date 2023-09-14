@@ -4,13 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class HelloController {
+public class Controller {
     @FXML
     private Label welcomeText;
 
@@ -27,9 +26,11 @@ public class HelloController {
         try {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             out.println(message);
+            handleMessage(message);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    //si hay un error el programa no crashea, guarda el te
     }
 
     // Handle messages received from the server and update the view
