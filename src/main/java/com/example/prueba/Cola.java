@@ -1,4 +1,6 @@
-class Cola {
+package com.example.prueba;
+
+public class Cola {
     private Nodo front;
     private Nodo rear;
 

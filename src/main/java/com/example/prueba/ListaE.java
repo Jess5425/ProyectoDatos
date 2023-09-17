@@ -1,3 +1,5 @@
+package com.example.prueba;
+
 public class ListaE {
     Nodo head;
 
