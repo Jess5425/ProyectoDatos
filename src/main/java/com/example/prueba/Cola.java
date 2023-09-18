@@ -1,23 +1,16 @@
 package com.example.prueba;
 
-class Cola {
-    private Nodo front;
-    private Nodo rear;
+public class Cola {
+    private NodoUsuario front;
+    private NodoUsuario rear;
 
     public Cola() {
         this.front = null;
         this.rear = null;
     }
 
-    public Cola(int[] elementos) {
-        this();
-        for (int elemento : elementos) {
-            enqueue(elemento);
-        }
-    }
-
-    public void enqueue(int data) {
-        Nodo newNode = new Nodo(data);
+    public void enqueue(Usuario data) {
+        NodoUsuario newNode = new NodoUsuario(data);
 
         if (isEmpty()) {
             front = newNode;
@@ -28,12 +21,12 @@ class Cola {
         }
     }
 
-    public int dequeue() {
+    public Usuario dequeue() {
         if (isEmpty()) {
             throw new IllegalStateException("Queue is empty");
         }
 
-        int data = front.data;
+        Usuario data = front.data;
         front = front.next;
 
         if (front == null) {
@@ -48,9 +41,9 @@ class Cola {
     }
 
     public void display() {
-        Nodo current = front;
+        NodoUsuario current = front;
         while (current != null) {
-            System.out.print(current.data + " -> ");
+            System.out.print(current.data.nombre + " -> "); 
             current = current.next;
         }
         System.out.println("null");
