@@ -43,7 +43,7 @@ public class Cola {
     public void display() {
         NodoUsuario current = front;
         while (current != null) {
-            System.out.print(current.data.nombre + " -> "); 
+            System.out.print(current.data.nombre + " -> ");
             current = current.next;
         }
         System.out.println("null");
