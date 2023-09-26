@@ -19,4 +19,14 @@ public class Servidor {
 
         iniciarServidor();
 
-    }}
+    }
+    private void iniciarServidor(){
+        ServerSocket serverSocket = null;
+        Socket clientSocket = null;
+
+        DataInputStream in;
+        DataOutputStream out;
+
+        final int PORT=5000;
+
+}
