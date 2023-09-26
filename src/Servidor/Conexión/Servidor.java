@@ -20,7 +20,7 @@ public class Servidor {
         iniciarServidor();
 
     }
-    private void iniciarServidor(){
+    private void iniciarServidor(){ZS
         ServerSocket serverSocket = null;
         Socket clientSocket = null;
 
