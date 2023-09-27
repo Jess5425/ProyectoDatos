@@ -50,4 +50,38 @@ public class Cliente {
             throw new RuntimeException(e);
         }
     }
+    public static String iniciarJuego() {
+
+        final String HOST = "localhost";
+
+        DataInputStream in;
+        DataOutputStream out;
+
+        final int PORT = 5000;
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            //Transformar de usuarios a JSON
+            Socket clientSocket = new Socket(HOST, PORT);
+
+            in = new DataInputStream(clientSocket.getInputStream());
+            out = new DataOutputStream(clientSocket.getOutputStream());
+
+            Instrucciones instrucciones = new Instrucciones("iniciarJuego","");
+            String instruccion = mapper.writeValueAsString(instrucciones);
+
+            out.writeUTF(instruccion);
+
+            String message = in.readUTF();
+
+            clientSocket.close();
+            return message;
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
