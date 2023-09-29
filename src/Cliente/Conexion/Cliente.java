@@ -65,7 +65,6 @@ public class Cliente {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            //Transformar de usuarios a JSON
             Socket clientSocket = new Socket(HOST, PORT);
 
             in = new DataInputStream(clientSocket.getInputStream());
