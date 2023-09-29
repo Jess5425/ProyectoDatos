@@ -14,4 +14,16 @@ public class LogicaJuego {
     Cola ordenJugadores;
     Cola jugadores;
     int CASILLAS_JUEGO = 10;
+
+    public LogicaJuego(Cola jugadores) {
+        this.jugadores = jugadores;
+        this.ordenJugadores = new Cola();
+        this.ordenJugadores.setFront(jugadores.getFront());
+        this.ordenJugadores.setRear(jugadores.getRear());
+        this.malla = new ArrayList<>();
+        this.coordenadas = new ArrayList<>();
+        this.casillasUsuarios = new ArrayList<>();
+        iniciarMalla();
+        iniciarCasillas();
+    }
 }
