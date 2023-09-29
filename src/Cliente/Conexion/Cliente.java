@@ -1,6 +1,7 @@
 package Cliente.Conexion;
 
 
+import Cliente.Malla.Lineas.Malla;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import Cliente.Usuario;
@@ -11,10 +12,16 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.List;
 
+/***
+ * Clase encargada de cominucarse con el servidor
+ */
 public class Cliente {
-
+    /***
+     * Funcion encargada de registrar Jugadores
+     * @param user Usuario a registrar
+     * @return respuesta del servidor
+     */
     public static String registrarJugador(Usuario user) {
 
         final String HOST = "localhost";
@@ -53,6 +60,10 @@ public class Cliente {
         }
     }
 
+    /***
+     *Solicita al servidor iniciar el juego
+     * @return respuesta del servidor
+     */
     public static String iniciarJuego() {
 
         final String HOST = "localhost";
@@ -86,7 +97,11 @@ public class Cliente {
         }
     }
 
-    public static List<List<Integer>> pintarVentana() {
+    /***
+     * Pide los datos necesarios para cargar en pantalla la malla del tablero
+     * @return Malla con los datos de la partida
+     */
+    public static Malla pintarVentana() {
 
         final String HOST = "localhost";
 
@@ -117,7 +132,7 @@ public class Cliente {
 
             }
             else {
-                List<List<Integer>> malla = mapper.readValue(message, List.class);
+                Malla malla = mapper.readValue(message, Malla.class);
 
                 return malla;
             }
@@ -130,7 +145,61 @@ public class Cliente {
         }
     }
 
-    public static String seleccionarLinea(Usuario user, int x, int y) {
+    /***
+     * Pide al servidor determinar si ya hay un ganador en la partida
+     * @return si hay ganador devuelve al Usuario ganador, de caso contrario retorna null
+     */
+    public static Usuario ganador() {
+
+        final String HOST = "localhost";
+
+        DataInputStream in;
+        DataOutputStream out;
+
+        final int PORT = 5000;
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            Socket clientSocket = new Socket(HOST, PORT);
+
+            in = new DataInputStream(clientSocket.getInputStream());
+            out = new DataOutputStream(clientSocket.getOutputStream());
+
+            Instrucciones instrucciones = new Instrucciones("ganador","");
+            String instruccion = mapper.writeValueAsString(instrucciones);
+
+            out.writeUTF(instruccion);
+
+            String message = in.readUTF();
+
+            clientSocket.close();
+
+            if (message.equals("")){
+                return null;
+
+            }
+            else {
+                Usuario usuario = mapper.readValue(message, Usuario.class);
+
+                return usuario;
+            }
+
+
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /***
+     * Envia los datos necesarios al servidor para procesar la linea seleccionada
+     * @param user usuario que selecciono la linea
+     * @param x coordenadas en el eje X del mouse
+     * @param y coordenada en el eje Y del mouse
+     */
+    public static void seleccionarLinea(Usuario user, int x, int y) {
 
         final String HOST = "localhost";
 
@@ -158,7 +227,6 @@ public class Cliente {
             String message = in.readUTF();
 
             clientSocket.close();
-            return message;
 
 
         } catch (IOException e) {
