@@ -16,7 +16,7 @@ public class LogicaJuego {
 
     Cola ordenJugadores;
     Cola jugadores;
-    public final static int CASILLAS_JUEGO = 13;
+    public final static int CASILLAS_JUEGO = 3;
 
     /***
      * Metodo constructor
