@@ -113,7 +113,7 @@ public class Malla {
                         //Verifica si la linea 2 espacios antes existe
                         if (tempFilasPrev2 != null) {
                             //Avanza hasta la misma columna que donde esta la linea seleccionada
-                            NodoLinea tempLineas2 = tempFilasPrev2.data.front;
+                            NodoLinea tempLineas2 = tempFilasPrev2.data.front; //prev1
                             for (int i = 1; i < x; i++) {
                                 tempLineas2 = tempLineas2.next;
                             }

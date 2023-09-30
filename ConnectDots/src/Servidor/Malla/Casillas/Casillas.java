@@ -14,7 +14,6 @@ public class Casillas {
      */
     public Casillas(int size) {
 
-        int y = 1;
         for (int i = 0; i < size; i++) {
             Fila fila = new Fila();
             for (int j = 0; j < size; j++) {
